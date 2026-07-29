@@ -113,9 +113,16 @@ main,
   min-width: 0;
 }
 
+.hero-title-line {
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
+}
+
 .hero-logo {
-  width: min(68vw, 740px);
-  margin: 0 0 18px -4px;
+  flex: 0 1 auto;
+  width: clamp(300px, 38vw, 520px);
+  margin: 0;
 }
 
 .hero-logo img {
@@ -733,9 +740,16 @@ code {
   }
 
   .hero-logo {
+    order: -1;
     width: min(100%, 520px);
     margin-left: -4px;
     margin-bottom: 20px;
+  }
+
+  .hero-title-line {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0;
   }
 
   .title-name {
