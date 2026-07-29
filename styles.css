@@ -105,12 +105,23 @@ main,
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: end;
-  padding: 54px 0 32px;
+  padding: 42px 0 32px;
   border-bottom: 1px solid var(--line);
 }
 
 .hero-main {
   min-width: 0;
+}
+
+.hero-logo {
+  width: min(68vw, 740px);
+  margin: 0 0 18px;
+}
+
+.hero-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .venue,
@@ -719,6 +730,11 @@ code {
   .hero {
     grid-template-columns: 1fr;
     padding-top: 34px;
+  }
+
+  .hero-logo {
+    width: min(100%, 520px);
+    margin-bottom: 20px;
   }
 
   .title-name {
