@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LATTE | ACM MM 2026</title>
+    <meta
+      name="description"
+      content="LATTE: Language-Driven Construction of 3D Driving Scenes for Closed-Loop AD Simulation."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="top-nav" aria-label="Primary navigation">
+        <a href="#motivation">Motivation</a>
+        <a href="#method">Method</a>
+        <a href="#results">Results</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#future">Limitations &amp; Future</a>
+        <a href="#citation">Citation</a>
+      </nav>
+    </header>
+
+    <aside class="side-nav" aria-label="Section navigation">
+      <a class="is-active" href="#motivation" data-section-link="motivation">Motivation</a>
+      <a href="#method" data-section-link="method">Method</a>
+      <a href="#results" data-section-link="results">Results</a>
+      <a href="#gallery" data-section-link="gallery">Gallery</a>
+      <a href="#future" data-section-link="future">Limitations &amp; Future</a>
+      <a href="#citation" data-section-link="citation">Citation</a>
+    </aside>
+
+    <main>
+      <section class="hero">
+        <div class="hero-main">
+          <p class="venue">ACM MM 2026</p>
+          <h1>
+            <span class="title-name">LATTE:</span>
+            <span class="title-desc">Language-Driven Construction of 3D Driving Scenes for Closed-Loop AD Simulation</span>
+          </h1>
+          <p class="subtitle">
+            Constructing explicit 3D driving scenarios from open-world language
+            requests, with asset grounding, layout optimization, and closed-loop
+            autonomous-driving evaluation.
+          </p>
+
+          <div class="authors" aria-label="Authors">
+            <span>Zaiyi Hu<sup>1</sup>,</span>
+            <span>Haifeng Wu<sup>1</sup>,</span>
+            <span>Yiyi Liao<sup>2</sup>,</span>
+            <span>Lixin Duan<sup>1</sup>,</span>
+            <span>Wen Li<sup>1</sup><span class="corresponding-mark" title="Corresponding author" aria-label="Corresponding author">&#9993;</span></span>
+          </div>
+          <div class="affiliations" aria-label="Affiliations">
+            <span><sup>1</sup>University of Electronic Science and Technology of China</span>
+            <span><sup>2</sup>Zhejiang University</span>
+          </div>
+
+        </div>
+      </section>
+
+      <section class="section text-section stage-motivation" id="motivation" data-section="motivation">
+        <h2 class="section-title">Motivation</h2>
+        <figure class="teaser">
+          <img
+            src="./assets/teaser.png"
+            alt="Comparison of video generative models, agentic 3D editing, and LATTE."
+          />
+          <figcaption>
+            LATTE links language understanding, open-world asset acquisition,
+            structurally coherent layout optimization, and closed-loop simulation.
+          </figcaption>
+        </figure>
+        <div class="section-body figure-aligned-text">
+          <p>
+            Closed-loop simulation is central to autonomous driving safety
+            evaluation, yet turning natural-language requests into valid 3D test
+            scenarios remains difficult. LATTE decomposes this problem into two
+            coupled stages: Image-Grounded Asset Construction (IGAC), which
+            acquires insertion-ready 3D assets for missing objects from visual
+            evidence, and Structurally Coherent Layout Optimization (SCLO), which
+            turns language-guided placements into simulation-suitable layouts
+            under physical and semantic constraints. The resulting edits are
+            written back to a real-scene-reconstructed simulator and evaluated
+            through closed-loop AD rollouts. Experiments
+            show that LATTE supports open-world asset insertion, produces more
+            coherent scene layouts, and creates behaviorally effective test cases
+            that measurably alter downstream AD performance.
+          </p>
+        </div>
+      </section>
+
+      <section class="section stage-method" id="method" data-section="method">
+        <h2 class="section-title">Method</h2>
+        <div class="carousel" data-carousel>
+          <div class="carousel-top">
+            <p class="section-intro">A compact view of the language-agentic construction pipeline.</p>
+            <div class="carousel-controls" aria-label="Method carousel controls">
+              <button type="button" data-carousel-prev aria-label="Previous method figure">&larr;</button>
+              <button type="button" data-carousel-next aria-label="Next method figure">&rarr;</button>
+            </div>
+          </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <article class="carousel-slide">
+                <figure class="paper-figure">
+                  <img src="./assets/framework.png" alt="Overview of the LATTE framework." />
+                </figure>
+                <div class="figure-aligned-text">
+                  <h2>Agentic scene construction framework.</h2>
+                  <p>
+                    LATTE uses a Manager Agent, Scene Editor Agent, and Layout Agent
+                    to translate language requests into executable 3D scene edit
+                    programs, then commits the edited scene to a closed-loop
+                    simulation environment.
+                  </p>
+                </div>
+              </article>
+              <article class="carousel-slide">
+                <figure class="paper-figure">
+                  <img src="./assets/asset-construction.png" alt="Image-grounded asset construction pipeline." />
+                </figure>
+                <div class="figure-aligned-text">
+                  <h2>Image-Grounded Asset Construction (IGAC).</h2>
+                  <p>
+                    Given an open-world object request, the module grounds the
+                    target with web visual evidence and converts it into a
+                    simulator-ready 3D asset for downstream scene editing.
+                  </p>
+                </div>
+              </article>
+              <article class="carousel-slide">
+                <figure class="paper-figure">
+                  <img src="./assets/layout.png" alt="Structurally coherent layout optimization." />
+                </figure>
+                <div class="figure-aligned-text">
+                  <h2>Structurally Coherent Layout Optimization (SCLO).</h2>
+                  <p>
+                    Starting from an initial layout, the module optimizes object
+                    positions and orientations under boundary, collision, semantic,
+                    and structural constraints to obtain the faithful final layout.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="carousel-dots" aria-label="Method carousel pagination">
+            <button type="button" class="is-active" data-carousel-dot aria-label="Show framework"></button>
+            <button type="button" data-carousel-dot aria-label="Show asset construction"></button>
+            <button type="button" data-carousel-dot aria-label="Show layout optimization"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stage-results" id="results" data-section="results">
+        <h2 class="section-title">Results</h2>
+        <div class="carousel" data-carousel>
+          <div class="carousel-top">
+            <p class="section-intro">Qualitative, asset, and closed-loop evidence in one compact panel.</p>
+            <div class="carousel-controls" aria-label="Results carousel controls">
+              <button type="button" data-carousel-prev aria-label="Previous result figure">&larr;</button>
+              <button type="button" data-carousel-next aria-label="Next result figure">&rarr;</button>
+            </div>
+          </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <article class="carousel-slide">
+                <figure class="paper-figure">
+                  <img
+                    src="./assets/qualitative.png"
+                    alt="Qualitative comparison across language-driven driving scene construction tasks."
+                  />
+                </figure>
+                <p class="section-intro figure-aligned-text">
+                  LATTE produces stronger instruction faithfulness and structural
+                  organization across open-vocabulary insertion, traffic composition,
+                  roadside occupation, and detour construction tasks.
+                </p>
+              </article>
+              <article class="carousel-slide">
+                <figure class="paper-figure">
+                  <img src="./assets/asset-results.png" alt="Image-grounded asset acquisition examples." />
+                </figure>
+                <div class="figure-aligned-text">
+                  <h2>Open-world asset acquisition results.</h2>
+                  <p>
+                    Visualization of the image-grounded asset acquisition pipeline,
+                    from web image retrieval and object localization to 3D asset
+                    reconstruction and scene insertion.
+                  </p>
+                </div>
+              </article>
+              <article class="carousel-slide">
+                <figure class="paper-figure">
+                  <img src="./assets/asset-comparison.png" alt="Qualitative comparison of 3D asset construction methods." />
+                </figure>
+                <p class="section-intro figure-aligned-text">
+                  Qualitative comparison of 3D asset construction methods. Our
+                  image-grounded pipeline produces more complete and
+                  insertion-ready assets.
+                </p>
+              </article>
+              <article class="carousel-slide">
+                <figure class="paper-figure">
+                  <img
+                    src="./assets/closed-loop.png"
+                    alt="Closed-loop driving behavior under language-driven scene editing."
+                  />
+                </figure>
+                <div class="figure-aligned-text">
+                  <h2>Edited scenes change downstream driving behavior.</h2>
+                  <p>
+                    LATTE-edited scenes are evaluated as executable AD test cases
+                    rather than only visual edits. The inserted assets and optimized
+                    layouts can change trajectories and reduce success- and
+                    safety-related metrics under closed-loop rollout.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="carousel-dots" aria-label="Results carousel pagination">
+            <button type="button" class="is-active" data-carousel-dot aria-label="Show qualitative results"></button>
+            <button type="button" data-carousel-dot aria-label="Show asset results"></button>
+            <button type="button" data-carousel-dot aria-label="Show asset comparison"></button>
+            <button type="button" data-carousel-dot aria-label="Show closed-loop results"></button>
+          </div>
+          <div class="metric-row figure-aligned-text" aria-label="Reported average metrics">
+            <div><strong>27.75</strong><span>CLIP</span></div>
+            <div><strong>58.90</strong><span>BLIP</span></div>
+            <div><strong>72.83</strong><span>Prompt compliance</span></div>
+            <div><strong>70.67</strong><span>Physical plausibility</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stage-gallery" id="gallery" data-section="gallery">
+        <h2 class="section-title">Gallery</h2>
+        <div class="carousel video-carousel" data-carousel>
+          <div class="carousel-top">
+            <p class="section-intro">Paired render and BEV simulation videos for each language-driven edit.</p>
+            <div class="carousel-controls" aria-label="Gallery carousel controls">
+              <button type="button" data-carousel-prev aria-label="Previous gallery video">&larr;</button>
+              <button type="button" data-carousel-next aria-label="Next gallery video">&rarr;</button>
+            </div>
+          </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <article class="carousel-slide paired-video-slide">
+                <div class="paired-video-grid">
+                  <div class="video-panel simulation-panel">
+                    <span>Simulation View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/cone-detour.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div class="video-panel bev-panel">
+                    <span>BEV2D View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/bev-cone-detour.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+                <div class="figure-aligned-text video-caption">
+                  <h3>One-lane Cone Detour</h3>
+                  <p>Create a gentle one-lane detour using only traffic cones on the road.</p>
+                </div>
+              </article>
+              <article class="carousel-slide paired-video-slide">
+                <div class="paired-video-grid">
+                  <div class="video-panel simulation-panel">
+                    <span>Simulation View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/traffic-jam.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div class="video-panel bev-panel">
+                    <span>BEV2D View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/bev-traffic-jam.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+                <div class="figure-aligned-text video-caption">
+                  <h3>Traffic Jam Construction</h3>
+                  <p>Create a traffic jam with multiple vehicles inserted into the scene.</p>
+                </div>
+              </article>
+              <article class="carousel-slide paired-video-slide">
+                <div class="paired-video-grid">
+                  <div class="video-panel simulation-panel">
+                    <span>Simulation View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/roadside-occupation.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div class="video-panel bev-panel">
+                    <span>BEV2D View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/bev-roadside-occupation.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+                <div class="figure-aligned-text video-caption">
+                  <h3>Roadside Occupation</h3>
+                  <p>Build a short roadside occupation while keeping the main road open.</p>
+                </div>
+              </article>
+              <article class="carousel-slide paired-video-slide">
+                <div class="paired-video-grid">
+                  <div class="video-panel simulation-panel">
+                    <span>Simulation View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/bulldozer.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                  <div class="video-panel bev-panel">
+                    <span>BEV2D View</span>
+                    <video controls autoplay muted loop preload="metadata" playsinline>
+                      <source src="./assets/videos/bev-bulldozer.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
+                <div class="figure-aligned-text video-caption">
+                  <h3>Bulldozer Scene Edit</h3>
+                  <p>Add a bulldozer driving toward the viewer along the road.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="carousel-dots" aria-label="Gallery carousel pagination">
+            <button type="button" class="is-active" data-carousel-dot aria-label="Show one-lane cone detour"></button>
+            <button type="button" data-carousel-dot aria-label="Show traffic jam construction"></button>
+            <button type="button" data-carousel-dot aria-label="Show roadside occupation"></button>
+            <button type="button" data-carousel-dot aria-label="Show bulldozer scene edit"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section text-section stage-future" id="future" data-section="future">
+        <h2 class="section-title">Limitations &amp; Future Directions</h2>
+        <div class="carousel limitation-carousel" data-carousel>
+          <div class="carousel-top">
+            <p class="section-intro">
+              LATTE turns language requests into executable 3D driving-scene
+              edits, while still inheriting open challenges from agent reasoning,
+              open-world asset construction, and scene rendering.
+            </p>
+            <div class="carousel-controls" aria-label="Limitations carousel controls">
+              <button type="button" data-carousel-prev aria-label="Previous limitation">&larr;</button>
+              <button type="button" data-carousel-next aria-label="Next limitation">&rarr;</button>
+            </div>
+          </div>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+          <article class="carousel-slide limitation-item">
+            <div class="limitation-copy">
+              <p class="limitation-kicker">01 Agent reasoning</p>
+              <h3>3D editing is bounded by VLM spatial intelligence.</h3>
+              <p>
+                LATTE is built around a 3D agentic flow: the agent must parse the
+                instruction, understand road topology, reason about object
+                relations, and revise invalid edits. In difficult cases, current
+                VLMs and open-source model APIs still show limited 3D spatial
+                reasoning and driving-scene commonsense, so the editing agent may
+                fail to produce reliable corrections without additional feedback.
+              </p>
+              <p>
+                <strong>Future.</strong> A stronger editing agent may require
+                driving-scene edit traces, simulator feedback, and reinforcement
+                learning or task-specific fine-tuning so that correction behavior
+                is learned from executable 3D outcomes rather than only prompted.
+              </p>
+            </div>
+            <div class="limitation-media dual-video">
+              <video controls autoplay muted loop preload="metadata" playsinline>
+                <source src="./assets/future/vlm-spatial-case-1.mp4" type="video/mp4" />
+              </video>
+              <video controls autoplay muted loop preload="metadata" playsinline>
+                <source src="./assets/future/vlm-spatial-case-2.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </article>
+
+          <article class="carousel-slide limitation-item">
+            <div class="limitation-copy">
+              <p class="limitation-kicker">02 Asset calibration</p>
+              <h3>Open-world 3D assets still need manual scale and orientation checks.</h3>
+              <p>
+                Image-grounded asset construction expands the editable object set,
+                but assets reconstructed from web images are not automatically
+                simulator-ready. Direction, canonical pose, metric scale, and
+                placement-specific calibration still require human verification,
+                especially when the source image gives weak geometric cues.
+              </p>
+              <p>
+                <strong>Future.</strong> More automatic pipelines could combine
+                orientation estimation, scale priors, multi-view asset validation,
+                and simulator-in-the-loop calibration to close the gap between
+                single-image reconstruction and directly deployable traffic assets.
+              </p>
+            </div>
+            <div class="asset-case-groups">
+              <div class="asset-case-group">
+                <p>Traffic-light insertion</p>
+                <div class="asset-case-pair">
+                  <figure>
+                    <img src="./assets/future/asset-before.png" alt="Traffic-light insertion context in the driving scene." />
+                    <figcaption>Scene context</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="./assets/future/render-panorama-artifact.png" alt="Traffic-light insertion artifact across reconstructed camera views." />
+                    <figcaption>View consistency check</figcaption>
+                  </figure>
+                </div>
+              </div>
+              <div class="asset-case-group">
+                <p>Cone scale calibration</p>
+                <div class="asset-case-pair">
+                  <figure>
+                    <img src="./assets/future/asset-scale-large.png" alt="Inserted traffic cone with overly large scale." />
+                    <figcaption>Over-scaled asset</figcaption>
+                  </figure>
+                  <figure>
+                    <img src="./assets/future/asset-scale-small.png" alt="Inserted traffic cone with corrected small scale." />
+                    <figcaption>Scale correction</figcaption>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="carousel-slide limitation-item">
+            <div class="limitation-copy">
+              <p class="limitation-kicker">03 Rendering harmonization</p>
+              <h3>3DGS insertion can expose appearance mismatch.</h3>
+              <p>
+                LATTE edits a reconstructed 3DGS world and inserts reconstructed
+                3DGS assets. This preserves an explicit simulation target, but the
+                current prototype does not perform scene-aware harmonization, so
+                inserted objects may look less natural under local lighting,
+                shadow, texture, or boundary conditions.
+              </p>
+              <p>
+                <strong>Future.</strong> Multi-view diffusion refinement,
+                illumination-aware 3DGS editing, and rendering-space repair could
+                be added after geometric insertion to improve visual coherence
+                while keeping the scene executable for closed-loop simulation.
+              </p>
+            </div>
+            <div class="limitation-media render-trim">
+              <video controls autoplay muted loop preload="metadata" playsinline>
+                <source src="./assets/future/render-harmonization-case.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </article>
+            </div>
+          </div>
+          <div class="carousel-dots" aria-label="Limitations carousel pagination">
+            <button type="button" class="is-active" data-carousel-dot aria-label="Show agent reasoning limitation"></button>
+            <button type="button" data-carousel-dot aria-label="Show asset calibration limitation"></button>
+            <button type="button" data-carousel-dot aria-label="Show rendering harmonization limitation"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section citation stage-citation" id="citation" data-section="citation">
+        <h2 class="section-title">Citation</h2>
+        <pre><code>@inproceedings{hu2026latte,
+  title     = {LATTE: Language-Driven Construction of 3D Driving Scenes for Closed-Loop AD Simulation},
+  author    = {Hu, Zaiyi and Wu, Haifeng and Liao, Yiyi and Duan, Lixin and Li, Wen},
+  booktitle = {Proceedings of the 34th ACM International Conference on Multimedia},
+  year      = {2026}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span class="footer-title">LATTE: Language-Driven Construction of 3D Driving Scenes for Closed-Loop AD Simulation</span>
+      <span class="footer-venue">ACM MM 2026</span>
+    </footer>
+    <script>
+      const sectionLinks = Array.from(document.querySelectorAll("[data-section-link]"));
+      const trackedSections = Array.from(document.querySelectorAll("[data-section]"));
+
+      const setActiveSection = (sectionName) => {
+        sectionLinks.forEach((link) => {
+          link.classList.toggle("is-active", link.dataset.sectionLink === sectionName);
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) {
+            setActiveSection(visible.target.dataset.section);
+          }
+        },
+        {
+          rootMargin: "-28% 0px -50% 0px",
+          threshold: [0.12, 0.28, 0.5],
+        }
+      );
+
+      trackedSections.forEach((section) => observer.observe(section));
+
+      document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+        const viewport = carousel.querySelector(".carousel-viewport");
+        const track = carousel.querySelector(".carousel-track");
+        const slides = Array.from(carousel.querySelectorAll(".carousel-slide"));
+        const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+        const previous = carousel.querySelector("[data-carousel-prev]");
+        const next = carousel.querySelector("[data-carousel-next]");
+        let current = 0;
+
+        const resizeViewport = () => {
+          const activeHeight = slides[current].getBoundingClientRect().height;
+          viewport.style.height = `${Math.ceil(activeHeight)}px`;
+        };
+
+        const syncVideos = (resetActive = false) => {
+          slides.forEach((slide, slideIndex) => {
+            const videos = Array.from(slide.querySelectorAll("video"));
+            const durations = videos
+              .map((video) => video.duration)
+              .filter((duration) => Number.isFinite(duration) && duration > 0);
+            const maxDuration = durations.length ? Math.max(...durations) : 0;
+
+            videos.forEach((video) => {
+              if (slideIndex === current) {
+                if (maxDuration) {
+                  video.playbackRate = Math.max(0.25, Math.min(2, video.duration / maxDuration));
+                }
+                if (resetActive) {
+                  video.currentTime = 0;
+                }
+                video.play().catch(() => {});
+              } else {
+                video.pause();
+                video.currentTime = 0;
+                video.playbackRate = 1;
+              }
+            });
+          });
+        };
+
+        const showSlide = (index, resetActive = false) => {
+          current = (index + slides.length) % slides.length;
+          track.style.transform = `translateX(-${current * 100}%)`;
+          slides.forEach((slide, slideIndex) => {
+            slide.classList.toggle("is-active", slideIndex === current);
+          });
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle("is-active", dotIndex === current);
+          });
+          syncVideos(resetActive);
+          requestAnimationFrame(resizeViewport);
+        };
+
+        previous.addEventListener("click", () => showSlide(current - 1, true));
+        next.addEventListener("click", () => showSlide(current + 1, true));
+        dots.forEach((dot, dotIndex) => {
+          dot.addEventListener("click", () => showSlide(dotIndex, true));
+        });
+        carousel.querySelectorAll("img").forEach((image) => {
+          if (image.complete) {
+            resizeViewport();
+          } else {
+            image.addEventListener("load", resizeViewport, { once: true });
+          }
+        });
+        carousel.querySelectorAll("video").forEach((video) => {
+          video.addEventListener("loadedmetadata", () => {
+            syncVideos();
+            resizeViewport();
+          }, { once: true });
+        });
+        window.addEventListener("resize", resizeViewport);
+        requestAnimationFrame(() => showSlide(0, true));
+      });
+    </script>
+  </body>
+</html>
