@@ -115,7 +115,7 @@ main,
 
 .hero-logo {
   width: min(68vw, 740px);
-  margin: 0 0 18px;
+  margin: 0 0 18px -4px;
 }
 
 .hero-logo img {
@@ -734,6 +734,7 @@ code {
 
   .hero-logo {
     width: min(100%, 520px);
+    margin-left: -4px;
     margin-bottom: 20px;
   }
 
