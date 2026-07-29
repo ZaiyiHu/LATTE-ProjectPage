@@ -77,17 +77,29 @@ main,
 
 .side-nav {
   position: fixed;
-  top: 164px;
+  top: 96px;
   left: 32px;
   z-index: 10;
   display: none;
-  width: 128px;
+  width: 170px;
   gap: 6px;
   padding-left: 14px;
   border-left: 1px solid var(--line);
   color: var(--quiet);
   font-size: 0.9rem;
   line-height: 1.25;
+}
+
+.side-logo {
+  width: 150px;
+  margin: 0 0 20px -14px;
+  padding: 0;
+}
+
+.side-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .side-nav a {
@@ -111,24 +123,6 @@ main,
 
 .hero-main {
   min-width: 0;
-}
-
-.hero-title-line {
-  display: flex;
-  align-items: center;
-  gap: clamp(32px, 5vw, 72px);
-}
-
-.hero-logo {
-  flex: 0 1 auto;
-  width: clamp(300px, 38vw, 520px);
-  margin: 0;
-}
-
-.hero-logo img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 .venue,
@@ -737,19 +731,6 @@ code {
   .hero {
     grid-template-columns: 1fr;
     padding-top: 34px;
-  }
-
-  .hero-logo {
-    order: -1;
-    width: min(100%, 520px);
-    margin-left: -4px;
-    margin-bottom: 20px;
-  }
-
-  .hero-title-line {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0;
   }
 
   .title-name {
